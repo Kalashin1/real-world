@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real World| Digital Asset Investments</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        
+        .hero-slide {
+            background-size: cover;
+            background-position: center;
+            transition: all 0.5s ease;
+        }
+        
+        .slide-1 {
+            background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('/assets/0b1a4222-e892-45b4-8854-773b712655d3.png');
+        }
+        
+        .slide-2 {
+            background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('/assets/tim-meyer-AsT9Dt11FkA-unsplash.jpg');
+        }
+        
+        .slide-3 {
+            background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('/assets/alexander-mils-lCPhGxs7pww-unsplash.jpg');
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .mining-progress {
+            height: 6px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            animation: progress 2s ease-in-out infinite;
+            background-size: 200% 100%;
+        }
+        
+        @keyframes progress {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .coin-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+    </style>
+    <script src="//code.jivosite.com/widget/bIrHYsZPXM" async></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-gray-900/50 backdrop-blur-md fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span class="text-2xl font-bold gradient-text">The Real World</span>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="#" class="text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                            <a href="/about.html" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                            <a href="/contact.html" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                            <a href="/services.html" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <a href="https://app.tokenwellcapital.pro" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition">
+                            Sign In
+                        </a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <a href="#" type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="/index.html" class="text-blue-400 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="/about.html" class="text-gray-300 hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="/services.html" class="text-gray-300 hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium">Services</a>
+                <a href="/contact.html" class="text-gray-300 hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+                
+                <a href="https://app.tokenwellcapital.pro" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white w-full px-4 py-2 rounded-md text-base font-medium hover:opacity-90 transition mt-2">
+                    Sign In
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider -->
+    <div class="relative h-screen overflow-hidden">
+        <!-- Slide 1 - Crypto Mining -->
+        <div class="hero-slide slide-1 absolute inset-0 flex items-center justify-center transition-opacity duration-500 opacity-100" id="slide1">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="coin-animation mb-8">
+                    <img class="real-world-logo lg:relative left-[25rem]" src="/assets/jtrw_logo-removebg-preview (1).png" width="100" height="100" />
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    <span class="gradient-text">Real World</span> Investment
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Start mining cryptocurrencies with our state-of-the-art cloud mining platform. Earn passive income with minimal effort.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <a href="https://app.tokenwellcapital.pro"
+                       class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-md text-lg font-medium hover:opacity-90 transition">
+                        Start Mining Now
+                    </a>
+                    <a href="https://app.tokenwellcapital.pro"
+                       class="border border-blue-400 text-blue-400 px-6 py-3 rounded-md text-lg font-medium hover:bg-blue-400 hover:text-white transition">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 2 - Real Estate -->
+        <div class="hero-slide slide-2 absolute inset-0 flex items-center justify-center transition-opacity duration-500 opacity-0" id="slide2">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="mb-8">
+                    <img class="real-world-logo lg:relative left-[32rem]" src="/assets/jtrw_logo-removebg-preview (1).png" width="100"
+                        height="100" />
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    <span class="gradient-text">Tokenized Real Estate</span> Investments
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Fractional ownership of premium properties worldwide. Earn rental income and benefit from property appreciation.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <a href="https://app.tokenwellcapital.pro" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-md text-lg font-medium hover:opacity-90 transition">
+                        Create Account
+                    </a>
+                    <a href="https://app.tokenwellcapital.pro" class="border border-blue-400 text-blue-400 px-6 py-3 rounded-md text-lg font-medium hover:bg-blue-400 hover:text-white transition">
+                        Login
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 3 - Pharmaceuticals -->
+        <div class="hero-slide slide-3 absolute inset-0 flex items-center justify-center transition-opacity duration-500 opacity-0" id="slide3">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="mb-8">
+                    <img class="real-world-logo lg:relative left-[30rem]" src="/assets/jtrw_logo-removebg-preview (1).png" width="100"
+                        height="100" />
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    <span class="gradient-text">Pharma Research</span> Investments
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Invest in groundbreaking pharmaceutical research and share in the profits of successful drug developments.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <a href="https://app.tokenwellcapital.pro"
+                       class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-md text-lg font-medium hover:opacity-90 transition">
+                        View Opportunities
+                    </a>
+                    <a href="https://app.tokenwellcapital.pro"
+                       class="border border-blue-400 text-blue-400 px-6 py-3 rounded-md text-lg font-medium hover:bg-blue-400 hover:text-white transition">
+                        Our Approach
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slider Controls -->
+        <div class="absolute bottom-10 left-0 right-0 flex justify-center space-x-2">
+            <button class="w-3 h-3 rounded-full bg-blue-400 slider-dot" data-slide="1"></button>
+            <button class="w-3 h-3 rounded-full bg-gray-500 slider-dot" data-slide="2"></button>
+            <button class="w-3 h-3 rounded-full bg-gray-500 slider-dot" data-slide="3"></button>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="py-16 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="text-5xl font-bold gradient-text mb-2">$2.4B+</div>
+                    <div class="text-gray-300 text-lg">Assets Under Management</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold gradient-text mb-2">450K+</div>
+                    <div class="text-gray-300 text-lg">Active Investors</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold gradient-text mb-2">98%</div>
+                    <div class="text-gray-300 text-lg">Customer Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mining Section -->
+    <section id="mining" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">Cloud Mining</span> Solutions
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Our mining infrastructure provides the most efficient way to earn cryptocurrency without the hassle of hardware maintenance.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Mining Plan 1 -->
+                <div class="bg-gray-800 rounded-xl p-8 transition-all duration-300 card-hover">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-bolt text-4xl text-yellow-400 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">Daily Plan</h3>
+                        <div class="text-blue-400 text-xl font-medium">$100 - $1,000</div>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <span>10 TH/s Mining Power</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <span>Daily Payouts</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <span>24/7 Monitoring</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <span>Basic Support</span>
+                        </li>
+                    </ul>
+                    <a href="https://app.tokenwellcapital.pro" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-md text-lg font-medium hover:opacity-90 transition">
+                        Get Started
+                    </a>
+                </div>
+                
+                <!-- Mining Plan 2 (Featured) -->
+                <div class="bg-gradient-to-br from-blue-900/50 to-purple-900/50 border border-blue-400/30 rounded-xl p-8 transition-all duration-300 card-hover transform scale-105">
+                    <div class="text-center mb-6">
+                        <div class="absolute top-0 right-0 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">POPULAR</div>
+                        <i class="fas fa-gem text-4xl text-blue-400 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">Monthly Plan</h3>
+                        <div class="text-blue-400 text-xl font-medium">$1,000 - $10,000</div>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <span>100 TH/s Mining Power</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <span>Monthly Payouts</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <span>Dedicated Resources</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <span>Priority Support</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <span>Mining Analytics</span>
+                        </li>
+                    </ul>
+                    <a href="https://app.tokenwellcapital.pro" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-md text-lg font-medium hover:opacity-90 transition">
+                        Get Started
+                    </a>
+                </div>
+                
+                <!-- Mining Plan 3 -->
+                <div class="bg-gray-800 rounded-xl p-8 transition-all duration-300 card-hover">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-crown text-4xl text-purple-400 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">Yearly Plan</h3>
+                        <div class="text-blue-400 text-xl font-medium">$10,000+</div>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <span>1 PH/s+ Mining Power</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <span>Real-time Payouts</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <span>Custom Mining Pool</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <span>24/7 VIP Support</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <span>Dedicated Account Manager</span>
+                        </li>
+                    </ul>
+                    <a href="https://app.tokenwellcapital.pro" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-md text-lg font-medium hover:opacity-90 transition">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Mining Dashboard Preview -->
+            <div class="mt-20 bg-gray-800 rounded-xl p-6">
+                <div class="flex flex-col md:flex-row items-center justify-between mb-8">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">Your Mining Dashboard</h3>
+                        <p class="text-gray-400">Monitor your mining performance in real-time</p>
+                    </div>
+                    <a href="https://app.tokenwellcapital.pro" class="mt-4 md:mt-0 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-md text-sm font-medium hover:opacity-90 transition">
+                        Connect Wallet
+                    </a>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-gray-700/50 p-4 rounded-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-400">Hashrate</span>
+                            <i class="fas fa-tachometer-alt text-blue-400"></i>
+                        </div>
+                        <div class="text-2xl font-bold">0 TH/s</div>
+                        <div class="text-xs text-gray-400 mt-1">Connect wallet to view</div>
+                    </div>
+                    <div class="bg-gray-700/50 p-4 rounded-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-400">Estimated Earnings</span>
+                            <i class="fas fa-coins text-yellow-400"></i>
+                        </div>
+                        <div class="text-2xl font-bold">0 BTC</div>
+                        <div class="text-xs text-gray-400 mt-1">Daily estimate</div>
+                    </div>
+                    <div class="bg-gray-700/50 p-4 rounded-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-400">Mining Status</span>
+                            <i class="fas fa-power-off text-red-400"></i>
+                        </div>
+                        <div class="text-2xl font-bold">Inactive</div>
+                        <div class="text-xs text-gray-400 mt-1">Purchase a plan to start</div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-700/50 p-4 rounded-lg">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-gray-400">Mining Progress</span>
+                        <span class="text-sm text-gray-400">0%</span>
+                    </div>
+                    <div class="mining-progress rounded-full"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real Estate Section -->
+    <section id="real-estate" class="py-20 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">Tokenized Real Estate</span> Investments
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Own fractions of premium properties worldwide and earn passive income through blockchain technology.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Property 1 -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden transition-all duration-300 card-hover">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Miami Beach Condo</h3>
+                            <span class="bg-blue-900 text-blue-300 text-xs px-2 py-1 rounded">5.8% ROI</span>
+                        </div>
+                        <p class="text-gray-400 mb-4">Luxury oceanfront condo with resort amenities in Miami Beach, Florida</p>
+                        <div class="flex justify-between text-sm text-gray-300 mb-4">
+                            <span><i class="fas fa-map-marker-alt mr-1"></i> Miami, FL</span>
+                            <span><i class="fas fa-door-open mr-1"></i> 3 Bed, 2 Bath</span>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-400">Tokens Available</span>
+                                <span>42% of 10,000</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 42%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-sm text-gray-400">Price per token</span>
+                                <div class="font-bold">$50</div>
+                            </div>
+                            <a href="https://app.tokenwellcapital.pro" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition">
+                                Invest Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Property 2 -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden transition-all duration-300 card-hover">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Austin Tech Office</h3>
+                            <span class="bg-blue-900 text-blue-300 text-xs px-2 py-1 rounded">7.2% ROI</span>
+                        </div>
+                        <p class="text-gray-400 mb-4">Modern office space in Austin's growing tech district with long-term leases</p>
+                        <div class="flex justify-between text-sm text-gray-300 mb-4">
+                            <span><i class="fas fa-map-marker-alt mr-1"></i> Austin, TX</span>
+                            <span><i class="fas fa-building mr-1"></i> 12,000 sq ft</span>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-400">Tokens Available</span>
+                                <span>68% of 25,000</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 68%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-sm text-gray-400">Price per token</span>
+                                <div class="font-bold">$20</div>
+                            </div>
+                            <a href="https://app.tokenwellcapital.pro" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition">
+                                Invest Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Property 3 -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden transition-all duration-300 card-hover">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Tokyo Retail Space</h3>
+                            <span class="bg-blue-900 text-blue-300 text-xs px-2 py-1 rounded">6.5% ROI</span>
+                        </div>
+                        <p class="text-gray-400 mb-4">Prime retail location in Shibuya district with high foot traffic</p>
+                        <div class="flex justify-between text-sm text-gray-300 mb-4">
+                            <span><i class="fas fa-map-marker-alt mr-1"></i> Tokyo, Japan</span>
+                            <span><i class="fas fa-store mr-1"></i> 5,500 sq ft</span>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-400">Tokens Available</span>
+                                <span>23% of 15,000</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 23%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-sm text-gray-400">Price per token</span>
+                                <div class="font-bold">$75</div>
+                            </div>
+                            <a href="https://app.tokenwellcapital.pro" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition">
+                                Invest Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://app.tokenwellcapital.pro" class="border border-blue-400 text-blue-400 px-6 py-3 rounded-md text-lg font-medium hover:bg-blue-400 hover:text-white transition">
+                    View All Properties
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pharmaceuticals Section -->
+    <section id="pharma" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">Pharmaceutical</span> Research Investments
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Invest in groundbreaking medical research and share in the profits of successful drug developments.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-gray-800 rounded-xl p-8 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold mb-4">How It Works</h3>
+                    <p class="text-gray-300 mb-6">
+                        Our platform connects investors with vetted pharmaceutical research projects. When a drug receives FDA approval and goes to market, investors receive a percentage of the profits proportional to their investment.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-blue-500/20 p-2 rounded-full mr-4">
+                                <i class="fas fa-flask text-blue-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Research Phase</h4>
+                                <p class="text-gray-400 text-sm">Invest in early-stage research with high potential</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-purple-500/20 p-2 rounded-full mr-4">
+                                <i class="fas fa-clipboard-check text-purple-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Clinical Trials</h4>
+                                <p class="text-gray-400 text-sm">Support promising drugs through FDA approval</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-green-500/20 p-2 rounded-full mr-4">
+                                <i class="fas fa-pills text-green-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Profit Sharing</h4>
+                                <p class="text-gray-400 text-sm">Earn royalties from successful drug sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold mb-6">Current Opportunities</h3>
+                    <div class="space-y-6">
+                        <!-- Opportunity 1 -->
+                        <div class="bg-gray-700/50 p-4 rounded-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold">Oncology Drug Research</h4>
+                                <span class="bg-blue-900 text-blue-300 text-xs px-2 py-1 rounded">Phase 2 Trials</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-3">Novel immunotherapy treatment for lung cancer</p>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-300">$2.4M raised of $5M</span>
+                                <span class="font-bold">48%</span>
+                            </div>
+                            <div class="w-full bg-gray-600 rounded-full h-2 mt-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 48%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Opportunity 2 -->
+                        <div class="bg-gray-700/50 p-4 rounded-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold">Alzheimer's Treatment</h4>
+                                <span class="bg-purple-900 text-purple-300 text-xs px-2 py-1 rounded">Phase 3 Trials</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-3">Breakthrough cognitive function improvement</p>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-300">$8.7M raised of $10M</span>
+                                <span class="font-bold">87%</span>
+                            </div>
+                            <div class="w-full bg-gray-600 rounded-full h-2 mt-2">
+                                <div class="bg-purple-500 h-2 rounded-full" style="width: 87%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Opportunity 3 -->
+                        <div class="bg-gray-700/50 p-4 rounded-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold">Rare Disease Therapy</h4>
+                                <span class="bg-green-900 text-green-300 text-xs px-2 py-1 rounded">Pre-Clinical</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-3">Gene therapy for rare genetic disorder</p>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-300">$1.2M raised of $3M</span>
+                                <span class="font-bold">40%</span>
+                            </div>
+                            <div class="w-full bg-gray-600 rounded-full h-2 mt-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-800 rounded-xl p-8">
+                <h3 class="text-2xl font-bold mb-6">Success Stories</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Success 1 -->
+                    <div class="bg-gradient-to-br from-blue-900/30 to-purple-900/30 border border-blue-400/20 rounded-xl p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-500/20 p-3 rounded-full mr-4">
+                                <i class="fas fa-prescription-bottle-alt text-blue-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">NeuroPain Relief</h4>
+                                <p class="text-gray-400 text-sm">FDA Approved 2022</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4">Chronic pain treatment with 72% efficacy in clinical trials</p>
+                        <div class="text-right">
+                            <span class="text-green-400 font-bold">14.2x ROI</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Success 2 -->
+                    <div class="bg-gradient-to-br from-blue-900/30 to-purple-900/30 border border-blue-400/20 rounded-xl p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-500/20 p-3 rounded-full mr-4">
+                                <i class="fas fa-syringe text-purple-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">ImmunoBoost</h4>
+                                <p class="text-gray-400 text-sm">FDA Approved 2021</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4">Vaccine adjuvant improving immune response by 40%</p>
+                        <div class="text-right">
+                            <span class="text-green-400 font-bold">8.7x ROI</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Success 3 -->
+                    <div class="bg-gradient-to-br from-blue-900/30 to-purple-900/30 border border-blue-400/20 rounded-xl p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-green-500/20 p-3 rounded-full mr-4">
+                                <i class="fas fa-heartbeat text-green-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">CardioStable</h4>
+                                <p class="text-gray-400 text-sm">FDA Approved 2020</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4">Cardiovascular stabilizer reducing heart failure incidents</p>
+                        <div class="text-right">
+                            <span class="text-green-400 font-bold">6.3x ROI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://app.tokenwellcapital.pro" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-md text-lg font-medium hover:opacity-90 transition">
+                    Sign In
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    About <span class="gradient-text">Real World</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Bridging traditional investments with blockchain technology for a decentralized future.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Our Mission</h3>
+                    <p class="text-gray-300 mb-6">
+                        The Real World was founded with the vision of democratizing access to high-value investment opportunities through blockchain technology. We believe in creating financial inclusion by tokenizing assets that were previously only available to institutional investors.
+                    </p>
+                    <p class="text-gray-300 mb-6">
+                        Our platform combines the security and transparency of blockchain with rigorous due diligence processes to bring you curated investment opportunities in cryptocurrency mining, real estate, and pharmaceutical research.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://app.tokenwellcapital.pro" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-md text-sm font-medium hover:opacity-90 transition">
+                            Learn More
+                        </a>
+                        <a href="https://app.tokenwellcapital.pro" class="border border-blue-400 text-blue-400 px-6 py-2 rounded-md text-sm font-medium hover:bg-blue-400 hover:text-white transition">
+                            Join Us
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold mb-6">Why Choose The Real World?</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-blue-500/20 p-2 rounded-full mr-4">
+                                <i class="fas fa-shield-alt text-blue-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Secure Platform</h4>
+                                <p class="text-gray-400">Military-grade encryption and multi-signature wallets</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-purple-500/20 p-2 rounded-full mr-4">
+                                <i class="fas fa-chart-line text-purple-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Proven Returns</h4>
+                                <p class="text-gray-400">Average 12.7% annualized returns across all investments</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-green-500/20 p-2 rounded-full mr-4">
+                                <i class="fas fa-hand-holding-usd text-green-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Low Barriers</h4>
+                                <p class="text-gray-400">Invest from as little as $100 in premium assets</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-yellow-500/20 p-2 rounded-full mr-4">
+                                <i class="fas fa-globe text-yellow-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Global Access</h4>
+                                <p class="text-gray-400">Available to investors in 45+ countries</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-900 rounded-xl p-8">
+                <h3 class="text-2xl font-bold mb-6 text-center">Frequently Asked Questions</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- FAQ 1 -->
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <div class="flex justify-between items-center cursor-pointer faq-toggle">
+                            <h4 class="font-bold">How does crypto mining work on your platform?</h4>
+                            <i class="fas fa-chevron-down text-blue-400"></i>
+                        </div>
+                        <div class="faq-content hidden mt-3 text-gray-300">
+                            <p>We operate large-scale mining facilities with the latest ASIC miners. When you purchase a mining plan, you're allocated a portion of our total hashrate. Your earnings are calculated based on your share of the mining power and paid out automatically.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 2 -->
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <div class="flex justify-between items-center cursor-pointer faq-toggle">
+                            <h4 class="font-bold">What happens to my real estate tokens if the property sells?</h4>
+                            <i class="fas fa-chevron-down text-blue-400"></i>
+                        </div>
+                        <div class="faq-content hidden mt-3 text-gray-300">
+                            <p>When a property is sold, the proceeds are distributed proportionally to all token holders after deducting any expenses. You'll receive your share in cryptocurrency to your connected wallet.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 3 -->
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <div class="flex justify-between items-center cursor-pointer faq-toggle">
+                            <h4 class="font-bold">How are pharmaceutical research projects selected?</h4>
+                            <i class="fas fa-chevron-down text-blue-400"></i>
+                        </div>
+                        <div class="faq-content hidden mt-3 text-gray-300">
+                            <p>Our medical advisory board reviews all potential research projects based on scientific merit, potential impact, and likelihood of FDA approval. Only the top 5% of submissions make it to our platform.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 4 -->
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <div class="flex justify-between items-center cursor-pointer faq-toggle">
+                            <h4 class="font-bold">What cryptocurrencies do you accept for investments?</h4>
+                            <i class="fas fa-chevron-down text-blue-400"></i>
+                        </div>
+                        <div class="faq-content hidden mt-3 text-gray-300">
+                            <p>We currently accept Bitcoin (BTC), Ethereum (ETH), USD Coin (USDC), and our native CSPH token. All investments are denominated in USD equivalent value at time of purchase.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 5 -->
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <div class="flex justify-between items-center cursor-pointer faq-toggle">
+                            <h4 class="font-bold">How are investment returns taxed?</h4>
+                            <i class="fas fa-chevron-down text-blue-400"></i>
+                        </div>
+                        <div class="faq-content hidden mt-3 text-gray-300">
+                            <p>Tax treatment varies by jurisdiction. In most countries, mining rewards are treated as income at receipt, while capital gains apply when you sell appreciated assets. We provide annual tax statements to help with reporting.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 6 -->
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <div class="flex justify-between items-center cursor-pointer faq-toggle">
+                            <h4 class="font-bold">What security measures protect my investments?</h4>
+                            <i class="fas fa-chevron-down text-blue-400"></i>
+                        </div>
+                        <div class="faq-content hidden mt-3 text-gray-300">
+                            <p>We use multi-signature wallets, cold storage for 95% of assets, regular security audits, and insurance coverage. All smart contracts are thoroughly vetted before deployment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <div class="py-16 bg-gradient-to-br from-blue-900/50 to-purple-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Stay Updated</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+                    Subscribe to our newsletter for the latest investment opportunities and platform updates.
+                </p>
+                <div class="max-w-md mx-auto flex">
+                    <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-l-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <a href="https://app.tokenwellcapital.pro" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-r-md font-medium hover:opacity-90 transition">
+                        Subscribe
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold gradient-text mb-4">The Real World</h3>
+                    <p class="text-gray-400 mb-4">
+                        The premier platform for blockchain-powered investments in cryptocurrency, real estate, and pharmaceuticals.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-medium"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Investments</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#mining" class="text-gray-400 hover:text-blue-400">Crypto Mining</a></li>
+                        <li><a href="#real-estate" class="text-gray-400 hover:text-blue-400">Real Estate</a></li>
+                        <li><a href="#pharma" class="text-gray-400 hover:text-blue-400">Pharmaceuticals</a></li>
+                        
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400">California, US</a></li>
+                        <li><a href="mailto:tokenwellcapital@gmail.com" class="text-gray-400 hover:text-blue-400">tokenwellcapital@gmail.com</a></li>
+                        <li><a href="tel:+4696923796" class="text-gray-400 hover:text-blue-400">+4696923796</a></li>
+                       
+                        <li><a href="/contact.html" class="text-gray-400 hover:text-blue-400">Help Center</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/about.html" class="text-gray-400 hover:text-blue-400">About Us</a></li>
+                        <li><a href="/services.html" class="text-gray-400 hover:text-blue-400">Services</a></li>
+                        <li><a href="/contact.html" class="text-gray-400 hover:text-blue-400">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">
+                        &copy; 2025 Real World. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 text-sm">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 text-sm">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 text-sm">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Hero slider functionality
+        let currentSlide = 1;
+        const totalSlides = 3;
+        
+        function showSlide(n) {
+            // Hide all slides
+            for (let i = 1; i <= totalSlides; i++) {
+                document.getElementById(`slide${i}`).classList.add('opacity-0');
+                document.getElementById(`slide${i}`).classList.remove('opacity-100');
+                document.querySelector(`.slider-dot[data-slide="${i}"]`).classList.remove('bg-blue-400');
+                document.querySelector(`.slider-dot[data-slide="${i}"]`).classList.add('bg-gray-500');
+            }
+            
+            // Show selected slide
+            document.getElementById(`slide${n}`).classList.remove('opacity-0');
+            document.getElementById(`slide${n}`).classList.add('opacity-100');
+            document.querySelector(`.slider-dot[data-slide="${n}"]`).classList.remove('bg-gray-500');
+            document.querySelector(`.slider-dot[data-slide="${n}"]`).classList.add('bg-blue-400');
+            
+            currentSlide = n;
+        }
+        
+        // Auto slide change
+        setInterval(() => {
+            let nextSlide = currentSlide + 1;
+            if (nextSlide > totalSlides) {
+                nextSlide = 1;
+            }
+            showSlide(nextSlide);
+        }, 8000);
+        
+        // Dot navigation
+        document.querySelectorAll('.slider-dot').forEach(dot => {
+            dot.addEventListener('click', () => {
+                const slideNumber = parseInt(dot.getAttribute('data-slide'));
+                showSlide(slideNumber);
+            });
+        });
+        
+        // FAQ toggle
+        document.querySelectorAll('.faq-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                
+                content.classList.toggle('hidden');
+                
+                if (content.classList.contains('hidden')) {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                } else {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                }
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
