@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickShip - Track Your Package</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .hero-gradient {
+      background: linear-gradient(135deg, #6166B3 0%, #424874 100%);
+    }
+
+    .tracking-card {
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .status-dot {
+      width: 12px;
+      height: 12px;
+      @apply rounded-full mr-2;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      transition: transform 0.3s ease;
+    }
+
+    .testimonial-card {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .client-logo {
+      filter: grayscale(100%);
+      opacity: 0.7;
+      transition: all 0.3s ease;
+    }
+
+    .client-logo:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .accordion-header {
+      cursor: pointer;
+      padding: 1rem 0;
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .accordion-content.active {
+      max-height: 500px;
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm sticky top-0 z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 flex items-center">
+            <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+              </svg>
+            </div>
+            <span class="ml-2 text-xl font-bold text-gray-800">QuickShip</span>
+          </div>
+        </div>
+        <div class="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-8">
+          <a href="#" class="text-gray-700 hover:text-indigo-600 px-3 py-2 font-medium">Home</a>
+          <a href="#" class="text-gray-700 hover:text-indigo-600 px-3 py-2 font-medium">Track</a>
+          <a href="#services" class="text-gray-700 hover:text-indigo-600 px-3 py-2 font-medium">Services</a>
+          <a href="#about" class="text-gray-700 hover:text-indigo-600 px-3 py-2 font-medium">About Us</a>
+          <a href="#contact" class="text-gray-700 hover:text-indigo-600 px-3 py-2 font-medium">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="hero-gradient">
+    <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl font-extrabold text-white sm:text-5xl sm:tracking-tight lg:text-6xl">
+          Track Your Shipment
+        </h1>
+        <p class="max-w-xl mt-5 mx-auto text-xl text-indigo-100">
+          Enter your tracking number to get real-time updates on your package's journey.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tracking Form -->
+  <div class="relative -mt-12 max-w-lg mx-auto px-4 pb-12 sm:px-6 lg:px-8">
+    <div class="tracking-card bg-white rounded-lg p-6 shadow-lg">
+      <form id="tracking-form" class="space-y-4">
+        <div>
+          <label for="tracking-number" class="block text-sm font-medium text-gray-700 mb-1">Tracking Number</label>
+          <div class="flex">
+            <input type="text" id="tracking-number" name="tracking-number" placeholder="Enter tracking number"
+              class="block w-full rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              required>
+            <button type="submit"
+              class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 rounded-r-md transition duration-150 ease-in-out">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Tracking Results (Initially Hidden) -->
+      <div id="tracking-results" class="mt-6 hidden">
+        <div class="border-b border-gray-200 pb-4">
+          <h3 class="text-lg font-medium text-gray-900 mb-2">Shipment Details</h3>
+          <div class="grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <span class="font-medium text-gray-700">Tracking Number:</span>
+              <span id="tracking-number-display" class="ml-2 text-gray-600"></span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-700">Status:</span>
+              <span id="status" class="ml-2 text-gray-600"></span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-700">Service:</span>
+              <span id="service" class="ml-2 text-gray-600"></span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-700">Destination:</span>
+              <span id="destination" class="ml-2 text-gray-600"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <h3 class="text-lg font-medium text-gray-900 mb-4">Shipment Progress</h3>
+          <div id="progress-steps" class="space-y-4">
+            <!-- Progress steps will be added by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Us Section -->
+  <div id="about" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+        <div>
+          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+            About QuickShip
+          </h2>
+          <p class="mt-4 text-lg text-gray-500">
+            Founded in 2010, QuickShip has grown from a small regional carrier to a global logistics leader. Our mission
+            is to simplify shipping for businesses and individuals alike.
+          </p>
+          <div class="mt-8">
+            <div class="flex items-center mb-4">
+              <div class="flex-shrink-0">
+                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                  <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                    </path>
+                  </svg>
+                </div>
+              </div>
+              <div class="ml-4">
+                <h4 class="text-lg font-medium text-gray-900">Our Team</h4>
+                <p class="text-gray-500">500+ logistics experts worldwide</p>
+              </div>
+            </div>
+            <div class="flex items-center mb-4">
+              <div class="flex-shrink-0">
+                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                  <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                    </path>
+                  </svg>
+                </div>
+              </div>
+              <div class="ml-4">
+                <h4 class="text-lg font-medium text-gray-900">Our Locations</h4>
+                <p class="text-gray-500">50+ warehouses across 6 continents</p>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div class="flex-shrink-0">
+                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                  <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                    </path>
+                  </svg>
+                </div>
+              </div>
+              <div class="ml-4">
+                <h4 class="text-lg font-medium text-gray-900">Our Promise</h4>
+                <p class="text-gray-500">99.7% on-time delivery rate</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 lg:mt-0">
+          <img class="rounded-lg shadow-lg"
+            src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+            alt="QuickShip warehouse">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services Section -->
+  <div id="services" class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          Our Services
+        </h2>
+        <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+          Comprehensive logistics solutions tailored to your business needs.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Sea Freight -->
+        <div class="service-card bg-white rounded-lg p-6 shadow-md">
+          <div class="w-12 h-12 bg-indigo-100 rounded-md flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Sea Freight</h3>
+          <p class="text-gray-600">Cost-effective ocean shipping for large volumes with global port coverage and customs
+            clearance.</p>
+          <a href="#" class="inline-block mt-4 text-indigo-600 font-medium">Learn more →</a>
+        </div>
+
+        <!-- Air Freight -->
+        <div class="service-card bg-white rounded-lg p-6 shadow-md">
+          <div class="w-12 h-12 bg-indigo-100 rounded-md flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Air Freight</h3>
+          <p class="text-gray-600">Express air cargo services for time-sensitive shipments with priority handling and
+            tracking.</p>
+          <a href="#" class="inline-block mt-4 text-indigo-600 font-medium">Learn more →</a>
+        </div>
+
+        <!-- Trucking -->
+        <div class="service-card bg-white rounded-lg p-6 shadow-md">
+          <div class="w-12 h-12 bg-indigo-100 rounded-md flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Trucking</h3>
+          <p class="text-gray-600">Reliable ground transportation with flexible scheduling and specialized equipment for
+            various cargo types.</p>
+          <a href="#" class="inline-block mt-4 text-indigo-600 font-medium">Learn more →</a>
+        </div>
+
+        <!-- Package Forwarding -->
+        <div class="service-card bg-white rounded-lg p-6 shadow-md">
+          <div class="w-12 h-12 bg-indigo-100 rounded-md flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Package Forwarding</h3>
+          <p class="text-gray-600">International shipping address and consolidation services for online shoppers and
+            businesses.</p>
+          <a href="#" class="inline-block mt-4 text-indigo-600 font-medium">Learn more →</a>
+        </div>
+
+        <!-- Warehouse -->
+        <div class="service-card bg-white rounded-lg p-6 shadow-md">
+          <div class="w-12 h-12 bg-indigo-100 rounded-md flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+              </path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Warehouse</h3>
+          <p class="text-gray-600">Secure storage solutions with inventory management, pick and pack, and fulfillment
+            services.</p>
+          <a href="#" class="inline-block mt-4 text-indigo-600 font-medium">Learn more →</a>
+        </div>
+
+        <!-- Delivery -->
+        <div class="service-card bg-white rounded-lg p-6 shadow-md">
+          <div class="w-12 h-12 bg-indigo-100 rounded-md flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Last-Mile Delivery</h3>
+          <p class="text-gray-600">Final leg delivery services with real-time tracking and flexible delivery options for
+            recipients.</p>
+          <a href="#" class="inline-block mt-4 text-indigo-600 font-medium">Learn more →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials Section -->
+  <div class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          What Our Clients Say
+        </h2>
+        <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+          Trusted by businesses of all sizes around the world.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card bg-gray-50 rounded-lg p-6">
+          <div class="flex items-center mb-4">
+            <div class="flex-shrink-0">
+              <img class="h-10 w-10 rounded-full"
+                src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt="Sarah Johnson">
+            </div>
+            <div class="ml-4">
+              <h4 class="text-lg font-medium text-gray-900">Sarah Johnson</h4>
+              <p class="text-gray-500">Operations Manager, TechCorp</p>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">"QuickShip has transformed our supply chain. Their real-time tracking and
+            reliable delivery have reduced our shipping delays by 40%."</p>
+          <div class="mt-4 flex text-yellow-400">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card bg-gray-50 rounded-lg p-6">
+          <div class="flex items-center mb-4">
+            <div class="flex-shrink-0">
+              <img class="h-10 w-10 rounded-full"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt="Michael Chen">
+            </div>
+            <div class="ml-4">
+              <h4 class="text-lg font-medium text-gray-900">Michael Chen</h4>
+              <p class="text-gray-500">CEO, Global Imports Inc.</p>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">"The package forwarding service has been a game-changer for our international
+            e-commerce business. Highly recommended!"</p>
+          <div class="mt-4 flex text-yellow-400">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card bg-gray-50 rounded-lg p-6">
+          <div class="flex items-center mb-4">
+            <div class="flex-shrink-0">
+              <img class="h-10 w-10 rounded-full"
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt="Elena Rodriguez">
+            </div>
+            <div class="ml-4">
+              <h4 class="text-lg font-medium text-gray-900">Elena Rodriguez</h4>
+              <p class="text-gray-500">Logistics Director, Fashion Forward</p>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">"Their warehouse and fulfillment services have allowed us to scale our
+            operations without increasing overhead. Exceptional service!"</p>
+          <div class="mt-4 flex text-yellow-400">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Client Section -->
+  <div class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          Trusted by Industry Leaders
+        </h2>
+        <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+          We partner with businesses across all sectors to deliver exceptional logistics solutions.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-6">
+        <!-- Client 1 -->
+        <div class="flex justify-center">
+          <div class="client-logo h-12 flex items-center">
+            <span class="text-xl font-bold text-gray-700">TechCorp</span>
+          </div>
+        </div>
+        <!-- Client 2 -->
+        <div class="flex justify-center">
+          <div class="client-logo h-12 flex items-center">
+            <span class="text-xl font-bold text-gray-700">Global Imports</span>
+          </div>
+        </div>
+        <!-- Client 3 -->
+        <div class="flex justify-center">
+          <div class="client-logo h-12 flex items-center">
+            <span class="text-xl font-bold text-gray-700">Fashion Forward</span>
+          </div>
+        </div>
+        <!-- Client 4 -->
+        <div class="flex justify-center">
+          <div class="client-logo h-12 flex items-center">
+            <span class="text-xl font-bold text-gray-700">AutoParts Plus</span>
+          </div>
+        </div>
+        <!-- Client 5 -->
+        <div class="flex justify-center">
+          <div class="client-logo h-12 flex items-center">
+            <span class="text-xl font-bold text-gray-700">MediSupply</span>
+          </div>
+        </div>
+        <!-- Client 6 -->
+        <div class="flex justify-center">
+          <div class="client-logo h-12 flex items-center">
+            <span class="text-xl font-bold text-gray-700">HomeGoods Co</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          Frequently Asked Questions
+        </h2>
+        <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+          Find answers to common questions about our services.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <!-- FAQ Item 1 -->
+        <div class="accordion-item">
+          <div class="accordion-header flex justify-between items-center">
+            <h3 class="text-lg font-medium text-gray-900">What shipping services do you offer?</h3>
+            <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <div class="accordion-content">
+            <p class="mt-2 text-gray-600 pb-4">We offer a comprehensive range of shipping services including sea
+              freight, air freight, trucking, package forwarding, warehouse storage, and last-mile delivery. Our
+              solutions are tailored to meet the needs of businesses of all sizes.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="accordion-item">
+          <div class="accordion-header flex justify-between items-center">
+            <h3 class="text-lg font-medium text-gray-900">How can I track my shipment?</h3>
+            <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <div class="accordion-content">
+            <p class="mt-2 text-gray-600 pb-4">You can track your shipment using the tracking form at the top of this
+              page. Simply enter your tracking number to get real-time updates on your package's location and estimated
+              delivery time.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="accordion-item">
+          <div class="accordion-header flex justify-between items-center">
+            <h3 class="text-lg font-medium text-gray-900">Do you offer international shipping?</h3>
+            <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <div class="accordion-content">
+            <p class="mt-2 text-gray-600 pb-4">Yes, we offer international shipping to over 200 countries worldwide. Our
+              global network ensures that your packages reach their destination efficiently and securely, with full
+              customs clearance support.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="accordion-item">
+          <div class="accordion-header flex justify-between items-center">
+            <h3 class="text-lg font-medium text-gray-900">What are your warehouse storage options?</h3>
+            <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <div class="accordion-content">
+            <p class="mt-2 text-gray-600 pb-4">We offer flexible warehouse storage solutions including short-term and
+              long-term options, temperature-controlled environments for sensitive goods, and integrated inventory
+              management systems. Our facilities are secure and monitored 24/7.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="accordion-item">
+          <div class="accordion-header flex justify-between items-center">
+            <h3 class="text-lg font-medium text-gray-900">How do I get a shipping quote?</h3>
+            <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <div class="accordion-content">
+            <p class="mt-2 text-gray-600 pb-4">You can request a shipping quote by contacting our sales team through the
+              contact form below or by calling our customer service number. We'll provide a customized quote based on
+              your specific shipping needs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div id="contact" class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          Contact Us
+        </h2>
+        <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+          Get in touch with our team for any questions or to request a quote.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        <div>
+          <form class="space-y-6">
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+              <input type="text" id="name" name="name"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                required>
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+              <input type="email" id="email" name="email"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                required>
+            </div>
+            <div>
+              <label for="company" class="block text-sm font-medium text-gray-700">Company</label>
+              <input type="text" id="company" name="company"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+              <textarea id="message" name="message" rows="4"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                required></textarea>
+            </div>
+            <div>
+              <button type="submit"
+                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="lg:pl-8">
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">Contact Information</h3>
+            <div class="space-y-4">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <p class="text-sm font-medium text-gray-900">Headquarters</p>
+                  <p class="text-sm text-gray-500">123 Shipping Lane, Logistics City, LC 12345</p>
+                </div>
+              </div>
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                    </path>
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <p class="text-sm font-medium text-gray-900">Phone</p>
+                  <p class="text-sm text-gray-500">+1 (555) 123-4567</p>
+                </div>
+              </div>
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                    </path>
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <p class="text-sm font-medium text-gray-900">Email</p>
+                  <p class="text-sm text-gray-500">info@quickship.com</p>
+                </div>
+              </div>
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <p class="text-sm font-medium text-gray-900">Business Hours</p>
+                  <p class="text-sm text-gray-500">Monday - Friday: 8:00 AM - 8:00 PM EST</p>
+                  <p class="text-sm text-gray-500">Saturday: 9:00 AM - 5:00 PM EST</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Newsletter Section -->
+  <div class="bg-indigo-700">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+      <div class="lg:flex lg:items-center lg:justify-between">
+        <div class="lg:w-0 lg:flex-1">
+          <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            Sign up for our newsletter
+          </h2>
+          <p class="mt-3 max-w-3xl text-lg text-indigo-200">
+            Stay updated with the latest shipping trends, exclusive offers, and company news.
+          </p>
+        </div>
+        <div class="mt-8 lg:mt-0 lg:ml-8">
+          <form class="sm:flex">
+            <label for="email-address" class="sr-only">Email address</label>
+            <input id="email-address" name="email-address" type="email" autocomplete="email" required
+              class="w-full px-5 py-3 border border-transparent placeholder-gray-500 focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white focus:border-white sm:max-w-xs rounded-md"
+              placeholder="Enter your email">
+            <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+              <button type="submit"
+                class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white">
+                Subscribe
+              </button>
+            </div>
+          </form>
+          <p class="mt-3 text-sm text-indigo-200">
+            We care about the protection of your data. Read our
+            <a href="#" class="text-white font-medium underline">
+              Privacy Policy.
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="bg-gray-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          Why Choose QuickShip?
+        </h2>
+        <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+          Fast, reliable, and transparent shipping solutions for all your needs.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Feature 1 -->
+        <div class="bg-white rounded-lg p-6 shadow-md">
+          <div class="w-12 h-12 bg-indigo-100 rounded-md flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Fast Delivery</h3>
+          <p class="text-gray-600">Our express shipping options ensure your packages arrive on time, every time.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-white rounded-lg p-6 shadow-md">
+          <div class="w-12 h-12 bg-indigo-100 rounded-md flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Secure Shipping</h3>
+          <p class="text-gray-600">Advanced tracking and security measures keep your packages safe throughout transit.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-white rounded-lg p-6 shadow-md">
+          <div class="w-12 h-12 bg-indigo-100 rounded-md flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M7 8h10m0 0V6a2 2 0 00-2-2H9a2 2 0 00-2 2v2m10 0v8a2 2 0 01-2 2H9a2 2 0 01-2-2v-8m10 0H7"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Package Protection</h3>
+          <p class="text-gray-600">Comprehensive insurance options available for peace of mind with every shipment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="md:flex md:items-center md:justify-between">
+        <div class="flex justify-center space-x-6 md:order-2">
+          <a href="#" class="text-gray-400 hover:text-white">
+            <span class="sr-only">Facebook</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                clip-rule="evenodd" />
+            </svg>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white">
+            <span class="sr-only">Instagram</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.246 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 8.865a3.73 3.73 0 110-7.46 3.73 3.73 0 010 7.46zm7.864-10.405a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white">
+            <span class="sr-only">Twitter</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+            </svg>
+          </a>
+        </div>
+        <div class="mt-8 md:mt-0 md:order-1">
+          <p class="text-center text-base text-gray-400">
+            &copy; 2023 QuickShip, Inc. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sample tracking data
+    const sampleTrackingData = {
+      '1Z999AA1012345678': {
+        trackingNumber: '1Z999AA1012345678',
+        status: 'In Transit',
+        service: 'Express Delivery',
+        destination: 'New York, NY 10001',
+        progress: [
+          { id: 1, date: '2023-07-15', time: '10:30 AM', status: 'Package picked up', location: 'Los Angeles, CA', completed: true },
+          { id: 2, date: '2023-07-15', time: '02:15 PM', status: 'Arrived at sorting facility', location: 'Los Angeles, CA', completed: true },
+          { id: 3, date: '2023-07-16', time: '08:45 AM', status: 'Departed sorting facility', location: 'Los Angeles, CA', completed: true },
+          { id: 4, date: '2023-07-16', time: '06:20 PM', status: 'In transit to destination', location: 'Dallas, TX', completed: true },
+          { id: 5, date: '2023-07-17', time: '09:10 AM', status: 'Out for delivery', location: 'New York, NY', completed: false },
+          { id: 6, date: 'Estimated', time: 'Before 5:00 PM', status: 'Delivery', location: 'New York, NY', completed: false }
+        ]
+      },
+      '1Z999BB2023456789': {
+        trackingNumber: '1Z999BB2023456789',
+        status: 'Delivered',
+        service: 'Standard Shipping',
+        destination: 'Chicago, IL 60601',
+        progress: [
+          { id: 1, date: '2023-07-10', time: '09:15 AM', status: 'Package picked up', location: 'Seattle, WA', completed: true },
+          { id: 2, date: '2023-07-10', time: '01:30 PM', status: 'Arrived at sorting facility', location: 'Seattle, WA', completed: true },
+          { id: 3, date: '2023-07-11', time: '07:20 AM', status: 'Departed sorting facility', location: 'Seattle, WA', completed: true },
+          { id: 4, date: '2023-07-12', time: '03:45 PM', status: 'Arrived at regional hub', location: 'Denver, CO', completed: true },
+          { id: 5, date: '2023-07-13', time: '11:20 AM', status: 'Out for delivery', location: 'Chicago, IL', completed: true },
+          { id: 6, date: '2023-07-13', time: '02:15 PM', status: 'Delivered', location: 'Chicago, IL', completed: true }
+        ]
+      },
+      '1Z999CC3034567890': {
+        trackingNumber: '1Z999CC3034567890',
+        status: 'Ready for Pickup',
+        service: 'Express Delivery',
+        destination: 'Miami, FL 33101',
+        progress: [
+          { id: 1, date: '2023-07-14', time: '11:20 AM', status: 'Package picked up', location: 'Boston, MA', completed: true },
+          { id: 2, date: '2023-07-14', time: '03:45 PM', status: 'Arrived at sorting facility', location: 'Boston, MA', completed: true },
+          { id: 3, date: '2023-07-15', time: '09:10 AM', status: 'Departed sorting facility', location: 'Boston, MA', completed: true },
+          { id: 4, date: '2023-07-16', time: '05:30 PM', status: 'Arrived at destination facility', location: 'Miami, FL', completed: true },
+          { id: 5, date: '2023-07-17', time: '08:00 AM', status: 'Ready for pickup', location: 'Miami, FL Distribution Center', completed: true },
+          { id: 6, date: 'Available', time: 'Now', status: 'Pickup', location: 'Miami, FL Distribution Center', completed: false }
+        ]
+      }
+    };
+
+    // Handle form submission
+    document.getElementById('tracking-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const trackingNumber = document.getElementById('tracking-number').value.trim();
+      const trackingResults = document.getElementById('tracking-results');
+      const progressSteps = document.getElementById('progress-steps');
+
+      // Clear previous results
+      progressSteps.innerHTML = '';
+
+      // Check if tracking number exists in sample data
+      if (sampleTrackingData[trackingNumber]) {
+        const data = sampleTrackingData[trackingNumber];
+
+        // Display shipment details
+        document.getElementById('tracking-number-display').textContent = data.trackingNumber;
+        document.getElementById('status').textContent = data.status;
+        document.getElementById('service').textContent = data.service;
+        document.getElementById('destination').textContent = data.destination;
+
+        // Display progress steps
+        data.progress.forEach(step => {
+          const stepElement = document.createElement('div');
+          stepElement.className = 'flex';
+
+          // Create status dot
+          const dot = document.createElement('div');
+          dot.className = 'status-dot ' + (step.completed ? 'bg-green-500' : 'bg-gray-300');
+
+          // Create content
+          const content = document.createElement('div');
+          content.className = 'ml-2';
+
+          const statusText = document.createElement('p');
+          statusText.className = 'text-sm font-medium text-gray-900';
+          statusText.textContent = step.status;
+
+          const locationText = document.createElement('p');
+          locationText.className = 'text-sm text-gray-500';
+          locationText.textContent = `${step.date}, ${step.time} · ${step.location}`;
+
+          content.appendChild(statusText);
+          content.appendChild(locationText);
+
+          stepElement.appendChild(dot);
+          stepElement.appendChild(content);
+
+          // Add connector line (except for the last item)
+          if (step.id < data.progress.length) {
+            const connector = document.createElement('div');
+            connector.className = 'ml-5 mt-1';
+            connector.innerHTML = '<div class="w-0.5 h-8 bg-gray-300"></div>';
+            progressSteps.appendChild(stepElement);
+            progressSteps.appendChild(connector);
+          } else {
+            progressSteps.appendChild(stepElement);
+          }
+        });
+
+        // Show results
+        trackingResults.classList.remove('hidden');
+      } else {
+        alert('Tracking number not found. Please try one of these: 1Z999AA1012345678, 1Z999BB2023456789, or 1Z999CC3034567890');
+      }
+    });
+
+    // FAQ Accordion functionality
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        content.classList.toggle('active');
+
+        // Rotate the arrow icon
+        const icon = header.querySelector('svg');
+        icon.classList.toggle('rotate-180');
+      });
+    });
+  </script>
+</body>
+
+</html>
